@@ -98,6 +98,26 @@ export default function EditProfilePage() {
       {showAvatarSelection && (
         <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center">
           <div className="bg-background p-6 rounded-lg shadow-lg w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4">アバターを選択</h2>
-            
-            <div\
+            <h2 className="text-lg font-semibold mb-4">アバターを選択</h2>
+            <div className="grid grid-cols-3 gap-4">
+              {avatars.map((avatar, index) => (
+                <div
+                  key={index}
+                  className={`cursor-pointer p-2 rounded-lg ${
+                    avatarIndex === index ? 'ring-2 ring-primary' : ''
+                  }`}
+                  onClick={() => handleAvatarSelect(index)}
+                >
+                  <Avatar className="h-16 w-16">
+                    <AvatarImage src={`/${avatar.placeholder}.svg`} alt={`Avatar ${index + 1}`} />
+                    <AvatarFallback>{avatar.type[0].toUpperCase()}</AvatarFallback>
+                  </Avatar>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
